@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
+import { Monaco } from "@monaco-editor/react";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -19,251 +20,279 @@ export const getLanguages = async () => {
   }
 };
 
-export const monacoEditorRules = [
-    //Text
-    { token: "", background: "212121" },
-    { token: "comment", foreground: "7f848e", fontStyle: "italic" },
-    { token: "string", foreground: "e06c75" },
-    { token: "number", foreground: "d19a66" },
-    { token: "keyword", foreground: "c678dd" },
-    { token: "type", foreground: "e5c07b" },
-    { token: "function", foreground: "61afef" },
-    { token: "variable", foreground: "d55fde" },
-    { token: "identifier", foreground: "d55fde" },
-
-    // C/C++
-    { token: "keyword.c", foreground: "c678dd" },
-    { token: "type.c", foreground: "e5c07b" },
-    { token: "function.c", foreground: "61afef" },
-    { token: "variable.c", foreground: "d55fde" },
-    { token: "preprocessor.c", foreground: "e06c75" },
-
-    // Java
-    { token: "keyword.java", foreground: "c678dd" },
-    { token: "type.java", foreground: "e5c07b" },
-    { token: "function.java", foreground: "61afef" },
-    { token: "variable.java", foreground: "d55fde" },
-    { token: "annotation.java", foreground: "56b6c2" },
-
-    // Python
-    { token: "keyword.python", foreground: "c678dd" },
-    { token: "type.python", foreground: "e5c07b" },
-    { token: "function.python", foreground: "61afef" },
-    { token: "variable.python", foreground: "d55fde" },
-    { token: "string.python", foreground: "e06c75" },
-    { token: "number.python", foreground: "d19a66" },
-    { token: "decorator.python", foreground: "56b6c2" },
-
-    // Go
-    { token: "keyword.go", foreground: "c678dd" },
-    { token: "type.go", foreground: "e5c07b" },
-    { token: "function.go", foreground: "61afef" },
-    { token: "variable.go", foreground: "d55fde" },
-    { token: "string.go", foreground: "e06c75" },
-    { token: "number.go", foreground: "d19a66" },
-
-    // Rust
-    { token: "keyword.rust", foreground: "c678dd" },
-    { token: "type.rust", foreground: "e5c07b" },
-    { token: "function.rust", foreground: "61afef" },
-    { token: "variable.rust", foreground: "d55fde" },
-    { token: "macro.rust", foreground: "56b6c2" },
-
-    // JavaScript/TypeScript
-    { token: "keyword.js", foreground: "c678dd" },
-    { token: "type.js", foreground: "e5c07b" },
-    { token: "function.js", foreground: "61afef" },
-    { token: "variable.js", foreground: "d55fde" },
-    { token: "string.js", foreground: "e06c75" },
-    { token: "number.js", foreground: "d19a66" },
-    { token: "keyword.ts", foreground: "c678dd" },
-    { token: "type.ts", foreground: "e5c07b" },
-    { token: "function.ts", foreground: "61afef" },
-    { token: "variable.ts", foreground: "d55fde" },
-    { token: "string.ts", foreground: "e06c75" },
-    { token: "number.ts", foreground: "d19a66" },
-]
-
-export const monacoEditorColors = {
-    "focusBorder": "#292d36",
-    "foreground": "#3d424d",
-    "widget.shadow": "#00010a",
-    "selection.background": "#161f2afd",
-    "textBlockQuote.background": "#0d1016",
-    "textLink.foreground": "#e65050",
-    "textLink.activeForeground": "#e65050",
-    "textPreformat.foreground": "#b3b1ad",
-    "button.background": "#e65050",
-    "button.foreground": "#0a0e14",
-    "button.hoverBackground": "#e14b4b",
-    "dropdown.background": "#0d1016",
-    "dropdown.foreground": "#3d424d",
-    "dropdown.border": "#191e25",
-    "input.background": "#0d1016",
-    "input.border": "#191e25",
-    "input.foreground": "#b3b1ad",
-    "input.placeholderForeground": "#2e323c",
-    "inputOption.activeBorder": "#e65050",
-    "inputValidation.errorBackground": "#0a0e14",
-    "inputValidation.errorBorder": "#ff3333",
-    "inputValidation.infoBackground": "#0a0e14",
-    "inputValidation.infoBorder": "#39bae6",
-    "inputValidation.warningBackground": "#0a0e14",
-    "inputValidation.warningBorder": "#ffb454",
-    "scrollbar.shadow": "#01060e",
-    "scrollbarSlider.background": "#3d424d66",
-    "scrollbarSlider.hoverBackground": "#3d424d99",
-    "scrollbarSlider.activeBackground": "#3d424db3",
-    "badge.background": "#e65050",
-    "badge.foreground": "#0a0e14",
-    "progressBar.background": "#e65050",
-    "list.activeSelectionBackground": "#01060e",
-    "list.activeSelectionForeground": "#3d424d",
-    "list.focusBackground": "#01060e",
-    "list.focusForeground": "#3d424d",
-    "list.highlightForeground": "#e65050",
-    "list.hoverBackground": "#01060e",
-    "list.hoverForeground": "#3d424d",
-    "list.inactiveSelectionBackground": "#01060e",
-    "list.inactiveSelectionForeground": "#3d424d",
-    "list.invalidItemForeground": "#2e323c",
-    "activityBar.background": "#0a0e14",
-    "activityBar.foreground": "#3d424dcc",
-    "activityBar.border": "#0a0e14",
-    "activityBarBadge.background": "#e65050",
-    "activityBarBadge.foreground": "#0a0e14",
-    "sideBar.background": "#0a0e14",
-    "sideBar.border": "#0a0e14",
-    "sideBarTitle.foreground": "#3d424d",
-    "sideBarSectionHeader.background": "#0a0e14",
-    "sideBarSectionHeader.foreground": "#3d424d",
-    "editorGroup.border": "#01060e",
-    "editorGroupHeader.noTabsBackground": "#0a0e14",
-    "editorGroupHeader.tabsBackground": "#0a0e14",
-    "editorGroupHeader.tabsBorder": "#0a0e14",
-    "tab.activeBackground": "#0a0e14",
-    "tab.activeForeground": "#b3b1ad",
-    "tab.border": "#0a0e14",
-    "tab.activeBorder": "#e65050",
-    "tab.unfocusedActiveBorder": "#3d424d",
-    "tab.inactiveBackground": "#0a0e14",
-    "tab.inactiveForeground": "#3d424d",
-    "tab.unfocusedActiveForeground": "#3d424d",
-    "tab.unfocusedInactiveForeground": "#3d424d",
-    "editor.background": "#0a0e14",
-    "editor.foreground": "#b3b1ad",
-    "editorLineNumber.foreground": "#3d424d99",
-    "editorLineNumber.activeForeground": "#3d424de6",
-    "editorCursor.foreground": "#e65050",
-    "editor.selectionBackground": "#161f2a",
-    "editor.inactiveSelectionBackground": "#121922",
-    "editor.selectionHighlightBackground": "#121922",
-    "editor.selectionHighlightBorder": "#1d2936",
-    "editor.wordHighlightBackground": "#121922",
-    "editor.wordHighlightStrongBackground": "#e6505033",
-    "editor.findMatchBackground": "#e650500d",
-    "editor.findMatchBorder": "#e65050",
-    "editor.findMatchHighlightBackground": "#e650500d",
-    "editor.findMatchHighlightBorder": "#e6505059",
-    "editor.findRangeHighlightBackground": "#121922",
-    "editor.findRangeHighlightBorder": "#0a0e1400",
-    "editor.lineHighlightBackground": "#01060e",
-    "editorLink.activeForeground": "#e65050",
-    "editor.rangeHighlightBackground": "#01060e",
-    "editorWhitespace.foreground": "#3d424d99",
-    "editorIndentGuide.background": "#3d424d66",
-    "editorIndentGuide.activeBackground": "#3d424db3",
-    "editorRuler.foreground": "#3d424d66",
-    "editorCodeLens.foreground": "#626a73",
-    "editorBracketMatch.background": "#3d424d4d",
-    "editorBracketMatch.border": "#3d424d99",
-    "editorOverviewRuler.border": "#01060e",
-    "editorOverviewRuler.modifiedForeground": "#6994bf99",
-    "editorOverviewRuler.addedForeground": "#91b36299",
-    "editorOverviewRuler.deletedForeground": "#d96c7599",
-    "editorOverviewRuler.errorForeground": "#ff3333",
-    "editorOverviewRuler.warningForeground": "#e65050",
-    "editorError.foreground": "#ff3333",
-    "editorWarning.foreground": "#e65050",
-    "editorGutter.modifiedBackground": "#6994bf99",
-    "editorGutter.addedBackground": "#91b36299",
-    "editorGutter.deletedBackground": "#d96c7599",
-    "diffEditor.insertedTextBackground": "#c2d94c26",
-    "diffEditor.removedTextBackground": "#f2966826",
-    "editorWidget.background": "#0d1016",
-    "editorSuggestWidget.background": "#0d1016",
-    "editorSuggestWidget.border": "#000000",
-    "editorSuggestWidget.highlightForeground": "#e65050",
-    "editorSuggestWidget.selectedBackground": "#01060e",
-    "editorHoverWidget.background": "#0d1016",
-    "editorHoverWidget.border": "#000000",
-    "debugExceptionWidget.border": "#01060e",
-    "debugExceptionWidget.background": "#0d1016",
-    "editorMarkerNavigation.background": "#0d1016",
-    "peekView.border": "#01060e",
-    "peekViewEditor.background": "#0d1016",
-    "peekViewEditor.matchHighlightBackground": "#e6505033",
-    "peekViewResult.background": "#0d1016",
-    "peekViewResult.fileForeground": "#3d424d",
-    "peekViewResult.matchHighlightBackground": "#e6505033",
-    "peekViewTitle.background": "#0d1016",
-    "peekViewTitleDescription.foreground": "#3d424d",
-    "peekViewTitleLabel.foreground": "#3d424d",
-    "panel.background": "#0a0e14",
-    "panel.border": "#01060e",
-    "panelTitle.activeBorder": "#e65050",
-    "panelTitle.activeForeground": "#b3b1ad",
-    "panelTitle.inactiveForeground": "#3d424d",
-    "statusBar.background": "#0a0e14",
-    "statusBar.foreground": "#3d424d",
-    "statusBar.border": "#0a0e14",
-    "statusBar.debuggingBackground": "#f29668",
-    "statusBar.debuggingForeground": "#0a0e14",
-    "statusBar.noFolderBackground": "#0d1016",
-    "statusBarItem.activeBackground": "#00000050",
-    "statusBarItem.hoverBackground": "#00000030",
-    "statusBarItem.prominentBackground": "#01060e",
-    "statusBarItem.prominentHoverBackground": "#00000030",
-    "titleBar.activeBackground": "#0a0e14",
-    "titleBar.activeForeground": "#b3b1ad",
-    "titleBar.inactiveBackground": "#0a0e14",
-    "titleBar.inactiveForeground": "#3d424d",
-    "titleBar.border": "#0a0e14",
-    "extensionButton.prominentForeground": "#0a0e14",
-    "extensionButton.prominentBackground": "#e65050",
-    "extensionButton.prominentHoverBackground": "#e14b4b",
-    "pickerGroup.border": "#01060e",
-    "pickerGroup.foreground": "#242831",
-    "debugToolBar.background": "#0d1016",
-    "walkThrough.embeddedEditorBackground": "#0d1016",
-    "gitDecoration.modifiedResourceForeground": "#6994bfb3",
-    "gitDecoration.deletedResourceForeground": "#d96c75b3",
-    "gitDecoration.untrackedResourceForeground": "#91b362b3",
-    "gitDecoration.ignoredResourceForeground": "#242831",
-    "gitDecoration.conflictingResourceForeground": "#d96c75b3",
-    "gitDecoration.submoduleResourceForeground": "#ffee99b3",
-    "settings.headerForeground": "#b3b1ad",
-    "settings.modifiedItemIndicator": "#6994bf",
-    "terminal.background": "#0a0e14",
-    "terminal.foreground": "#b3b1ad",
-    "terminal.ansiBlack": "#01060e",
-    "terminal.ansiRed": "#ea6c73",
-    "terminal.ansiGreen": "#91b362",
-    "terminal.ansiYellow": "#f9af4f",
-    "terminal.ansiBlue": "#53bdfa",
-    "terminal.ansiMagenta": "#fae994",
-    "terminal.ansiCyan": "#90e1c6",
-    "terminal.ansiWhite": "#c7c7c7",
-    "terminal.ansiBrightBlack": "#686868",
-    "terminal.ansiBrightRed": "#f07178",
-    "terminal.ansiBrightGreen": "#c2d94c",
-    "terminal.ansiBrightYellow": "#ffb454",
-    "terminal.ansiBrightBlue": "#59c2ff",
-    "terminal.ansiBrightMagenta": "#ffee99",
-    "terminal.ansiBrightCyan": "#95e6cb",
-    "terminal.ansiBrightWhite": "#ffffff",
-    "editorGroup.emptyBackground": "#0d1016"
+interface TokenColor {
+  scope: string | string[];
+  settings: {
+    foreground?: string;
+    fontStyle?: string;
+  };
 }
+
+interface Base {
+   token: string;
+  foreground?: string;
+  fontStyle?: string 
+}
+
+export const convertTokenColorsToMonacoRule = (tokenColors: TokenColor[]) => {
+  return tokenColors.flatMap((rule) => {
+    const scopes = Array.isArray(rule.scope) ? rule.scope : [rule.scope];
+    return scopes.map((scope) => {
+      const token = scope.replace(/\./g, ".");
+      const { foreground, fontStyle } = rule.settings;
+      const base: Base = { token };
+      if (foreground) base.foreground = foreground.replace("#", "").toUpperCase();
+      if (fontStyle) base.fontStyle = fontStyle;
+      return base;
+    });
+  });
+}
+
+// export const monacoEditorRules = [
+//     //Text
+//     { token: "", background: "212121" },
+//     { token: "comment", foreground: "7f848e", fontStyle: "italic" },
+//     { token: "string", foreground: "e06c75" },
+//     { token: "number", foreground: "d19a66" },
+//     { token: "keyword", foreground: "c678dd" },
+//     { token: "type", foreground: "e5c07b" },
+//     { token: "function", foreground: "61afef" },
+//     { token: "variable", foreground: "d55fde" },
+//     { token: "identifier", foreground: "d55fde" },
+
+//     // C/C++
+//     { token: "keyword.c", foreground: "c678dd" },
+//     { token: "type.c", foreground: "e5c07b" },
+//     { token: "function.c", foreground: "61afef" },
+//     { token: "variable.c", foreground: "d55fde" },
+//     { token: "preprocessor.c", foreground: "e06c75" },
+
+//     // Java
+//     { token: "keyword.java", foreground: "c678dd" },
+//     { token: "type.java", foreground: "e5c07b" },
+//     { token: "function.java", foreground: "61afef" },
+//     { token: "variable.java", foreground: "d55fde" },
+//     { token: "annotation.java", foreground: "56b6c2" },
+
+//     // Python
+//     { token: "keyword.python", foreground: "c678dd" },
+//     { token: "type.python", foreground: "e5c07b" },
+//     { token: "function.python", foreground: "61afef" },
+//     { token: "variable.python", foreground: "d55fde" },
+//     { token: "string.python", foreground: "e06c75" },
+//     { token: "number.python", foreground: "d19a66" },
+//     { token: "decorator.python", foreground: "56b6c2" },
+
+//     // Go
+//     { token: "keyword.go", foreground: "c678dd" },
+//     { token: "type.go", foreground: "e5c07b" },
+//     { token: "function.go", foreground: "61afef" },
+//     { token: "variable.go", foreground: "d55fde" },
+//     { token: "string.go", foreground: "e06c75" },
+//     { token: "number.go", foreground: "d19a66" },
+
+//     // Rust
+//     { token: "keyword.rust", foreground: "c678dd" },
+//     { token: "type.rust", foreground: "e5c07b" },
+//     { token: "function.rust", foreground: "61afef" },
+//     { token: "variable.rust", foreground: "d55fde" },
+//     { token: "macro.rust", foreground: "56b6c2" },
+
+//     // JavaScript/TypeScript
+//     { token: "keyword.js", foreground: "c678dd" },
+//     { token: "type.js", foreground: "e5c07b" },
+//     { token: "function.js", foreground: "61afef" },
+//     { token: "variable.js", foreground: "d55fde" },
+//     { token: "string.js", foreground: "e06c75" },
+//     { token: "number.js", foreground: "d19a66" },
+//     { token: "keyword.ts", foreground: "c678dd" },
+//     { token: "type.ts", foreground: "e5c07b" },
+//     { token: "function.ts", foreground: "61afef" },
+//     { token: "variable.ts", foreground: "d55fde" },
+//     { token: "string.ts", foreground: "e06c75" },
+//     { token: "number.ts", foreground: "d19a66" },
+// ]
+
+// export const monacoEditorColors = {
+//     "focusBorder": "#292d36",
+//     "foreground": "#3d424d",
+//     "widget.shadow": "#00010a",
+//     "selection.background": "#161f2afd",
+//     "textBlockQuote.background": "#0d1016",
+//     "textLink.foreground": "#e65050",
+//     "textLink.activeForeground": "#e65050",
+//     "textPreformat.foreground": "#b3b1ad",
+//     "button.background": "#e65050",
+//     "button.foreground": "#0a0e14",
+//     "button.hoverBackground": "#e14b4b",
+//     "dropdown.background": "#0d1016",
+//     "dropdown.foreground": "#3d424d",
+//     "dropdown.border": "#191e25",
+//     "input.background": "#0d1016",
+//     "input.border": "#191e25",
+//     "input.foreground": "#b3b1ad",
+//     "input.placeholderForeground": "#2e323c",
+//     "inputOption.activeBorder": "#e65050",
+//     "inputValidation.errorBackground": "#0a0e14",
+//     "inputValidation.errorBorder": "#ff3333",
+//     "inputValidation.infoBackground": "#0a0e14",
+//     "inputValidation.infoBorder": "#39bae6",
+//     "inputValidation.warningBackground": "#0a0e14",
+//     "inputValidation.warningBorder": "#ffb454",
+//     "scrollbar.shadow": "#01060e",
+//     "scrollbarSlider.background": "#3d424d66",
+//     "scrollbarSlider.hoverBackground": "#3d424d99",
+//     "scrollbarSlider.activeBackground": "#3d424db3",
+//     "badge.background": "#e65050",
+//     "badge.foreground": "#0a0e14",
+//     "progressBar.background": "#e65050",
+//     "list.activeSelectionBackground": "#01060e",
+//     "list.activeSelectionForeground": "#3d424d",
+//     "list.focusBackground": "#01060e",
+//     "list.focusForeground": "#3d424d",
+//     "list.highlightForeground": "#e65050",
+//     "list.hoverBackground": "#01060e",
+//     "list.hoverForeground": "#3d424d",
+//     "list.inactiveSelectionBackground": "#01060e",
+//     "list.inactiveSelectionForeground": "#3d424d",
+//     "list.invalidItemForeground": "#2e323c",
+//     "activityBar.background": "#0a0e14",
+//     "activityBar.foreground": "#3d424dcc",
+//     "activityBar.border": "#0a0e14",
+//     "activityBarBadge.background": "#e65050",
+//     "activityBarBadge.foreground": "#0a0e14",
+//     "sideBar.background": "#0a0e14",
+//     "sideBar.border": "#0a0e14",
+//     "sideBarTitle.foreground": "#3d424d",
+//     "sideBarSectionHeader.background": "#0a0e14",
+//     "sideBarSectionHeader.foreground": "#3d424d",
+//     "editorGroup.border": "#01060e",
+//     "editorGroupHeader.noTabsBackground": "#0a0e14",
+//     "editorGroupHeader.tabsBackground": "#0a0e14",
+//     "editorGroupHeader.tabsBorder": "#0a0e14",
+//     "tab.activeBackground": "#0a0e14",
+//     "tab.activeForeground": "#b3b1ad",
+//     "tab.border": "#0a0e14",
+//     "tab.activeBorder": "#e65050",
+//     "tab.unfocusedActiveBorder": "#3d424d",
+//     "tab.inactiveBackground": "#0a0e14",
+//     "tab.inactiveForeground": "#3d424d",
+//     "tab.unfocusedActiveForeground": "#3d424d",
+//     "tab.unfocusedInactiveForeground": "#3d424d",
+//     "editor.background": "#0a0e14",
+//     "editor.foreground": "#b3b1ad",
+//     "editorLineNumber.foreground": "#3d424d99",
+//     "editorLineNumber.activeForeground": "#3d424de6",
+//     "editorCursor.foreground": "#e65050",
+//     "editor.selectionBackground": "#161f2a",
+//     "editor.inactiveSelectionBackground": "#121922",
+//     "editor.selectionHighlightBackground": "#121922",
+//     "editor.selectionHighlightBorder": "#1d2936",
+//     "editor.wordHighlightBackground": "#121922",
+//     "editor.wordHighlightStrongBackground": "#e6505033",
+//     "editor.findMatchBackground": "#e650500d",
+//     "editor.findMatchBorder": "#e65050",
+//     "editor.findMatchHighlightBackground": "#e650500d",
+//     "editor.findMatchHighlightBorder": "#e6505059",
+//     "editor.findRangeHighlightBackground": "#121922",
+//     "editor.findRangeHighlightBorder": "#0a0e1400",
+//     "editor.lineHighlightBackground": "#01060e",
+//     "editorLink.activeForeground": "#e65050",
+//     "editor.rangeHighlightBackground": "#01060e",
+//     "editorWhitespace.foreground": "#3d424d99",
+//     "editorIndentGuide.background": "#3d424d66",
+//     "editorIndentGuide.activeBackground": "#3d424db3",
+//     "editorRuler.foreground": "#3d424d66",
+//     "editorCodeLens.foreground": "#626a73",
+//     "editorBracketMatch.background": "#3d424d4d",
+//     "editorBracketMatch.border": "#3d424d99",
+//     "editorOverviewRuler.border": "#01060e",
+//     "editorOverviewRuler.modifiedForeground": "#6994bf99",
+//     "editorOverviewRuler.addedForeground": "#91b36299",
+//     "editorOverviewRuler.deletedForeground": "#d96c7599",
+//     "editorOverviewRuler.errorForeground": "#ff3333",
+//     "editorOverviewRuler.warningForeground": "#e65050",
+//     "editorError.foreground": "#ff3333",
+//     "editorWarning.foreground": "#e65050",
+//     "editorGutter.modifiedBackground": "#6994bf99",
+//     "editorGutter.addedBackground": "#91b36299",
+//     "editorGutter.deletedBackground": "#d96c7599",
+//     "diffEditor.insertedTextBackground": "#c2d94c26",
+//     "diffEditor.removedTextBackground": "#f2966826",
+//     "editorWidget.background": "#0d1016",
+//     "editorSuggestWidget.background": "#0d1016",
+//     "editorSuggestWidget.border": "#000000",
+//     "editorSuggestWidget.highlightForeground": "#e65050",
+//     "editorSuggestWidget.selectedBackground": "#01060e",
+//     "editorHoverWidget.background": "#0d1016",
+//     "editorHoverWidget.border": "#000000",
+//     "debugExceptionWidget.border": "#01060e",
+//     "debugExceptionWidget.background": "#0d1016",
+//     "editorMarkerNavigation.background": "#0d1016",
+//     "peekView.border": "#01060e",
+//     "peekViewEditor.background": "#0d1016",
+//     "peekViewEditor.matchHighlightBackground": "#e6505033",
+//     "peekViewResult.background": "#0d1016",
+//     "peekViewResult.fileForeground": "#3d424d",
+//     "peekViewResult.matchHighlightBackground": "#e6505033",
+//     "peekViewTitle.background": "#0d1016",
+//     "peekViewTitleDescription.foreground": "#3d424d",
+//     "peekViewTitleLabel.foreground": "#3d424d",
+//     "panel.background": "#0a0e14",
+//     "panel.border": "#01060e",
+//     "panelTitle.activeBorder": "#e65050",
+//     "panelTitle.activeForeground": "#b3b1ad",
+//     "panelTitle.inactiveForeground": "#3d424d",
+//     "statusBar.background": "#0a0e14",
+//     "statusBar.foreground": "#3d424d",
+//     "statusBar.border": "#0a0e14",
+//     "statusBar.debuggingBackground": "#f29668",
+//     "statusBar.debuggingForeground": "#0a0e14",
+//     "statusBar.noFolderBackground": "#0d1016",
+//     "statusBarItem.activeBackground": "#00000050",
+//     "statusBarItem.hoverBackground": "#00000030",
+//     "statusBarItem.prominentBackground": "#01060e",
+//     "statusBarItem.prominentHoverBackground": "#00000030",
+//     "titleBar.activeBackground": "#0a0e14",
+//     "titleBar.activeForeground": "#b3b1ad",
+//     "titleBar.inactiveBackground": "#0a0e14",
+//     "titleBar.inactiveForeground": "#3d424d",
+//     "titleBar.border": "#0a0e14",
+//     "extensionButton.prominentForeground": "#0a0e14",
+//     "extensionButton.prominentBackground": "#e65050",
+//     "extensionButton.prominentHoverBackground": "#e14b4b",
+//     "pickerGroup.border": "#01060e",
+//     "pickerGroup.foreground": "#242831",
+//     "debugToolBar.background": "#0d1016",
+//     "walkThrough.embeddedEditorBackground": "#0d1016",
+//     "gitDecoration.modifiedResourceForeground": "#6994bfb3",
+//     "gitDecoration.deletedResourceForeground": "#d96c75b3",
+//     "gitDecoration.untrackedResourceForeground": "#91b362b3",
+//     "gitDecoration.ignoredResourceForeground": "#242831",
+//     "gitDecoration.conflictingResourceForeground": "#d96c75b3",
+//     "gitDecoration.submoduleResourceForeground": "#ffee99b3",
+//     "settings.headerForeground": "#b3b1ad",
+//     "settings.modifiedItemIndicator": "#6994bf",
+//     "terminal.background": "#0a0e14",
+//     "terminal.foreground": "#b3b1ad",
+//     "terminal.ansiBlack": "#01060e",
+//     "terminal.ansiRed": "#ea6c73",
+//     "terminal.ansiGreen": "#91b362",
+//     "terminal.ansiYellow": "#f9af4f",
+//     "terminal.ansiBlue": "#53bdfa",
+//     "terminal.ansiMagenta": "#fae994",
+//     "terminal.ansiCyan": "#90e1c6",
+//     "terminal.ansiWhite": "#c7c7c7",
+//     "terminal.ansiBrightBlack": "#686868",
+//     "terminal.ansiBrightRed": "#f07178",
+//     "terminal.ansiBrightGreen": "#c2d94c",
+//     "terminal.ansiBrightYellow": "#ffb454",
+//     "terminal.ansiBrightBlue": "#59c2ff",
+//     "terminal.ansiBrightMagenta": "#ffee99",
+//     "terminal.ansiBrightCyan": "#95e6cb",
+//     "terminal.ansiBrightWhite": "#ffffff",
+//     "editorGroup.emptyBackground": "#0d1016"
+// }
 
 const pythonBuiltins = [
   { label: "abs", insertText: "abs(${1:x})", documentation: "Return the absolute value of a number" },
@@ -1217,3 +1246,46 @@ export const goCompletions = [
   ...goBuiltins,
   ...goSnippets
 ];
+
+// Add this helper function at the bottom or in a separate module if needed
+export function setupJavaSemanticHighlighting(monaco: Monaco) {
+  const legend = {
+    tokenTypes: ["type", "variable", "function", "parameter"],
+    tokenModifiers: []
+  };
+
+  monaco.languages.registerDocumentSemanticTokensProvider("java", {
+    getLegend: () => legend,
+    provideDocumentSemanticTokens: (model: Monaco) => {
+      const lines = model.getLinesContent();
+      const tokens: number[] = [];
+
+      lines.forEach((line: string, lineIndex: number): void => {
+        let match: RegExpMatchArray | null;
+        const regex: RegExp = /\b(String|int|double|boolean|char|void|args|main|[a-zA-Z_]\w*)\b/g;
+
+        while ((match = regex.exec(line))) {
+          const word: string = match[1];
+          const start: number | undefined = match.index;
+          const length: number = word.length;
+          const tokenType: number | undefined = getTokenType(word);
+          if (tokenType !== undefined) {
+            tokens.push(lineIndex, start!, length, tokenType, 0);
+          }
+        }
+      });
+
+      return {
+        data: new Uint32Array(tokens),
+      };
+    }
+  });
+
+  function getTokenType(word: string): number | undefined {
+    if (["String", "int", "double", "boolean", "char", "void"].includes(word)) return 0; // type
+    if (["args"].includes(word)) return 3; // parameter
+    if (["main"].includes(word)) return 2; // function
+    if (/^[a-z_]\w*/.test(word)) return 1; // variable
+    return undefined;
+  }
+}
